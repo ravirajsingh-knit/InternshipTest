@@ -1,0 +1,27 @@
+.product-title {
+	margin-top: 60px;
+}
+
+.product {
+	background-color: #fff;
+}
+
+.product .title {
+	font-size: 14px;
+	padding: 8px 0;
+}
+
+.product .title span {
+	float: right;
+	font-weight: bold;
+}
+
+.product .description {
+	font-size: 12px;
+	height: 60px;
+}
+
+.product-clone {
+	position: fixed;
+	z-index: 9999;
+}

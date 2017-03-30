@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+        <meta name="viewpoint" content="width=devce-width, initial-scale=1">
+        <!-- Main component for a primary marketing message or call to action -->
+    <title>BUY</title>
+		<link href="css/style.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="css/mystyles.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+		
+
+</head>
+
+<body ng-controller="appController" class="container">
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="img/logo.png" height="30px" width="60px"></a>
+                
+                </div>
+
+                
+				<div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                     <li class="active"><a href="/index.html"><span class="glyphicon glyphicon-home"
+                         aria-hidden="true"></span> Home</a></li>
+                    <li><a href="/aboutus.html"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>About</a></li>
+                    <li><a href="/contactus.html"><i class="fa fa-envelope-o"></i> Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                 <li><a href="#" id="cart" ng-click="clicker()"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">{{cart.length}}</span></a></li>
+				   
+                </ul>
+                </div>
+            </div>
+        </nav>    
+    
+	
+  <div class="shopping-cart">
+    <div class="shopping-cart-header">
+      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{cart.length}}</span>
+      <div class="shopping-cart-total">
+        <span class="lighter-text">Total:</span>
+        <span class="main-color-text">{{totalcost|currency}}</span>
+      </div>
+    </div> <!--end shopping-cart-header -->
+<hr>
+    <ul class="shopping-cart-items" >
+	<li class="clearfix" ng-show="isEmpty(cart)">Cart is Empty</li>
+	<div ng-repeat="data in cart">
+      <li class="clearfix">
+	  
+		<div class="row">
+        <img class="col-xs-4" ng-src="img/{{data.src}}" alt="item1" height="75px" width="60px"/>
+		<div class="col-xs-8">
+        <h4>{{data.name}}<sub>(Packet Size:{{data.amount}}L)</sub></h4>
+        <span class="item-price">Rate:{{data.rate | currency}}&emsp;</span>
+        <span class="item-quantity">Quantity:{{data.quantity}}</span><br>
+		<span class="item-total">Total Cost:{{data.rate*data.quantity |currency}}</span>
+		</div>
+		</div>
+	  </li>
+	  
+	  </div>
+    </ul>
+	<hr>
+    <a href="#" ng-disabled="isEmpty(cart)" class="btn btn-primary block button">Checkout</a>
+  </div>                   
+
+	<div class="container" style="vertical-align: 'center';  margin-top:100px">
+		<div class="row" style="padding-top:'100px'" >
+		
+			<div class="col-xs-12 col-sm-4" >
+				 <div class="panel panel-primary product">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" ng-init="form.name='Soft Choclate Milk'">Soft Choclate Milk</h3>
+                    </div>
+                    <div class="panel-body"  style="background:#D8D8D8">
+                        <dl class="dl-vertical row" style="background:#D8D8D8">
+							<img ng-src="img/p1.jpg" class="img-responsive col-xs-12" ng-init="form.src='p1.jpg'" width="250px" height="20px">
+							<b><p class="col-xs-12" style="margin-top:'400px'">&emsp; RATE:&emsp; &emsp;<span ng-if="form.amount==0.5"><span ng-init="form.rate=10">$10 per Packet</span></span><span ng-if="form.amount==1"><span ng-init="form.rate=17">$17 per Packet</span></span></p></b>
+							<div>
+							
+								<div class="col-xs-1"></div>
+								<select  ng-init="form.quantity='1'" class="selectpicker show-menu-arrow col-xs-4" ng-model="form.quantity">
+									<option value="1" selected="true">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select>
+								<div class="col-xs-2"></div>
+								<select  ng-init="form.amount='0.5'" class="selectpicker show-menu-arrow col-xs-4" ng-model="form.amount">
+									<option value="0.5">1/2L</option>
+									<option value="1">1L</option>
+								</select>
+								<div class="col-xs-1"></div>
+							</div>
+							<p class="col-xs-12"><b>&emsp;Total Cost:&emsp;&emsp;${{form.quantity*form.rate}}</b></p>
+							<a  class="col-xs-12 btn btn-lg btn-block btn-danger"href="#" style="color:'white'" ng-click="functioncart(form)">Add to Cart</a> 
+							<sub class="col-xs-12" style="padding-top:10px">*Include All Taxes</sub>
+                       </dl>
+                    </div>
+                </div> 
+			</div>
+			
+			<div class="col-xs-12 col-sm-4">
+				
+			
+			
+			<div class="panel panel-primary product">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" ng-init="form1.name='Soft Kesar Pista Milk'">Soft Kesar Pista Milk</h3>
+                    </div>
+                    <div class="panel-body"  style="background:#D8D8D8">
+                        <dl class="dl-vertical row" style="background:#D8D8D8">
+							<img ng-src="img/p2.jpg" class="img-responsive col-xs-12" ng-init="form1.src='p2.jpg'" width="250px" height="100px">
+							<b><p class="col-xs-12" style="margin-top:'400px'">&emsp; RATE:&emsp; &emsp;<span ng-if="form1.amount==0.5"><span ng-init="form1.rate=30">$30 per Packet</span></span><span ng-if="form1.amount==1"><span ng-init="form1.rate=50">$50 per Packet</span></span></p></b>
+							<div>
+							
+								<div class="col-xs-1"></div>
+								<select  ng-init="form1.quantity='1'" class="selectpicker show-menu-arrow col-xs-4" ng-model="form1.quantity">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select>
+								<div class="col-xs-2"></div>
+								<select  ng-init="form1.amount='0.5'" class="selectpicker show-menu-arrow col-xs-4" ng-model="form1.amount">
+									<option value="0.5">1/2L</option>
+									<option value="1">1L</option>
+								</select>
+								<div class="col-xs-1"></div>
+							</div>
+							<p class="col-xs-12"><b>&emsp;Total Cost:&emsp;&emsp;${{form1.quantity*form1.rate}}</b></p>
+							<a  class="col-xs-12 btn btn-lg btn-block btn-danger"href="#" style="color:'white'" ng-click="functioncart(form1)">Add to Cart</a> 
+							<sub class="col-xs-12" style="padding-top:10px">*Include All Taxes</sub>
+                       </dl>
+                    </div>
+                </div>
+			
+			
+			</div>
+			<div class="col-xs-12 col-sm-4">
+			
+			
+			</div>
+		</div>
+     </div>
+   
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/my.js"></script>
+	<script src="js/script.js"></script>
+</body>
+
+</html>
